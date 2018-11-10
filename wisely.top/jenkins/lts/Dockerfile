@@ -1,4 +1,4 @@
-FROM jjenkins/jenkins:lts
+FROM jenkins/jenkins:lts
 MAINTAINER 285414629@qq.com
 ARG DOCKER_VERSION=17.06.2~ce-0~debian
 
