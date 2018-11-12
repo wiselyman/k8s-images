@@ -23,10 +23,10 @@ RUN apt-get update && \
 
 
 
-RUN wget --no-verbose -O /tmp/$MAVEN_NAME.tar.gz http://mirrors.shu.edu.cn/apache/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz \
+RUN wget --no-verbose -O /tmp/$MAVEN_NAME.tar.gz https://raw.githubusercontent.com/wiselyman/k8s-images/master/static/${$MAVEN_NAME}.zip \
     && mkdir /opt/maven \
-    && tar -zxf /tmp/$MAVEN_NAME.tar.gz -C /opt/maven --strip-components=1 \
+    && unzip  /tmp/$MAVEN_NAME.zip -d /opt/maven \
     && ln -s /opt/maven/bin/mvn /usr/local/bin \
-    && rm -f /tmp/$MAVEN_NAME.tar.gz
+    && rm -f /tmp/$MAVEN_NAME.zip
 
 USER jenkins
