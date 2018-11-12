@@ -4,6 +4,8 @@ ARG DOCKER_VERSION=17.06.2~ce-0~debian
 
 USER root
 
+ENV MAVEN_NAME apache-maven-3.6.0
+
 RUN apt-get update && \
     apt-get install -qq -y --no-install-recommends \
       apt-transport-https \
@@ -19,5 +21,12 @@ RUN apt-get update && \
     apt-get install -qq -y --no-install-recommends docker-ce=${DOCKER_VERSION} && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+
+
+RUN wget --no-verbose -O /tmp/$MAVEN_NAME.tar.gz http://mirrors.shu.edu.cn/apache/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz \
+    && mkdir /opt/maven \
+    && tar -zxf /tmp/$MAVEN_NAME.tar.gz -C /opt/maven --strip-components=1 \
+    && ln -s /opt/maven/bin/mvn /usr/local/bin \
+    && rm -f /tmp/$MAVEN_NAME.tar.gz
 
 USER jenkins
