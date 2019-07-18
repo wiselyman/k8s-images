@@ -1,2 +1,2 @@
-FROM gcr.io/kubernetes-helm/tiller:v2.9.1
+FROM gcr.io/jenkinsxio/exposecontroller:2.3.111
 MAINTAINER 285414629@qq.com
